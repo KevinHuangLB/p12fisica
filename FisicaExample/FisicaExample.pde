@@ -6,12 +6,15 @@ color brown  = color(166, 120, 24);
 color green  = color(74, 163, 57);
 color red    = color(224, 80, 61);
 color yellow = color(242, 215, 16);
+color white = #FFFFFF;
+color black = #000000;
 
 //assets
 PImage redBird;
+PImage mango;
 
 float cloudX;
-float cloudY;
+float cloudX2;
 
 FPoly topPlatform;
 FPoly bottomPlatform;
@@ -25,13 +28,13 @@ void setup() {
 
   //load resources
   redBird = loadImage("red-bird.png");
+  mango = loadImage("mango.png");
 
   //initialise world
   makeWorld();
-  
+
   //cloud variables
   cloudX = 0;
-  cloudY = 67;
 
   //add terrain to world
   makeTopPlatform();
@@ -97,14 +100,30 @@ void draw() {
   println("x: " + mouseX + " y: " + mouseY);
   background(blue);
 
+  circle(cloudX, 50, 67);
+  if (cloudX < width) {
+    cloudX++;
+  }
+  if (cloudX >= width) cloudX = 0;
+
+  fill(white);
+  
   if (frameCount % 50 == 0) {  //Every 20 frames ...
     makeCircle();
     makeBlob();
     makeBox();
     makeBird();
   }
+
+
   world.step();  //get box2D to calculate all the forces and new positions
   world.draw();  //ask box2D to convert this world to processing screen coordinates and draw
+  
+    circle(cloudX, 100, 50);
+  if (cloudX2 < width) {
+    cloudX2++;
+  }
+  if (cloudX2 >= width) cloudX2 = 0;
 }
 
 
@@ -151,8 +170,10 @@ void makeBlob() {
 //===========================================================================================
 
 void makeBox() {
-  FBox box = new FBox(25, 100);
+  FBox box = new FBox(100, 100);
   box.setPosition(random(100, width-100), -5);
+
+  box.attachImage(mango);
 
   //set visuals
   box.setStroke(0);
@@ -160,9 +181,9 @@ void makeBox() {
   box.setFillColor(green);
 
   //set physical properties
-  box.setDensity(0.2);
+  box.setDensity(0.01);
   box.setFriction(1);
-  box.setRestitution(0.25);
+  box.setRestitution(1);
   world.add(box);
 }
 

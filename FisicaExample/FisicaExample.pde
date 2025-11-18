@@ -16,6 +16,9 @@ PImage mango;
 float cloudX;
 float cloudX2;
 
+boolean gravityToggle;
+boolean generateToggle;
+
 FPoly topPlatform;
 FPoly bottomPlatform;
 
@@ -39,6 +42,10 @@ void setup() {
   //add terrain to world
   makeTopPlatform();
   makeBottomPlatform();
+
+  //gravity
+  gravityToggle = false;
+  generateToggle = false;
 }
 
 //===========================================================================================
@@ -107,25 +114,40 @@ void draw() {
   if (cloudX >= width) cloudX = 0;
 
   fill(white);
-  
-  if (frameCount % 50 == 0) {  //Every 20 frames ...
+
+  if (frameCount % 50 == 0 && !generateToggle) {  //Every 20 frames ...
     makeCircle();
     makeBlob();
     makeBox();
     makeBird();
   }
+  println(generateToggle);
 
-
-  world.step();  //get box2D to calculate all the forces and new positions
+  if (!gravityToggle) {
+    world.step();  //get box2D to calculate all the forces and new positions
+  }
   world.draw();  //ask box2D to convert this world to processing screen coordinates and draw
-  
-    circle(cloudX, 100, 50);
+
+  circle(cloudX, 100, 50);
   if (cloudX2 < width) {
     cloudX2++;
   }
   if (cloudX2 >= width) cloudX2 = 0;
+
+  rectMode(CENTER);
+  square(200, 200, 50);
+  square(600, 200, 50);
+  rectMode(CORNER);
 }
 
+void mouseReleased() {
+  if (mouseX > 175 && mouseX < 225 && mouseY < 225 && mouseY > 175) {
+    gravityToggle = !gravityToggle;
+  }
+  if (mouseX > 575 && mouseX < 625 && mouseY < 225 && mouseY > 175) {
+    generateToggle = !generateToggle;
+  }
+}
 
 //===========================================================================================
 

@@ -15,7 +15,7 @@ void makeBlob(FBlob blob) {
 }
 
 void makeCircle(FCircle circle) {
-  circle.setPosition(random(100, width-100), -600);
+  circle.setPosition(700, 650);
 
   //set visuals
   circle.setStroke(0);
@@ -23,9 +23,9 @@ void makeCircle(FCircle circle) {
   circle.setFillColor(red);
 
   //set physical properties
-  circle.setDensity(0.2);
+  circle.setDensity(0.5);
   circle.setFriction(1);
-  circle.setRestitution(1);
+  circle.setRestitution(0.3);
 
   //add to world
   world.add(circle);
@@ -34,19 +34,21 @@ void makeCircle(FCircle circle) {
 void makeBoard(FPoly board) {
 
   //plot the vertices of this platform
-  board.vertex(300, 480);
-  board.vertex(350, 480);
-  board.vertex(350, 550);
-  board.vertex(550, 550);
-  board.vertex(550, 480);
-  board.vertex(600, 480);
-  board.vertex(600, 580);
-  board.vertex(300, 580);
+  board.vertex(0, 600);
+  board.vertex(25, 600);
+  board.vertex(40, 660);
+  board.vertex(75, 660);
+  board.vertex(100, 610);
+  board.vertex(300, 670);
+  board.vertex(300, 700);
+  board.vertex(0, 700);
 
   // define properties
   board.setStatic(true);
   board.setFillColor(brown);
-  board.setFriction(0);
+  board.setGrabbable(false);
+  board.setFriction(1);
+  board.setRestitution(0);
 
   //put it in the world
   world.add(board);
@@ -68,4 +70,22 @@ void makeFloor(FPoly floor) {
 
   //put it in the world
   world.add(floor);
+}
+
+void makeBagStand(FPoly bagStand) {
+
+  //plot the vertices of this platform
+  bagStand.vertex(650, 700);
+  bagStand.vertex(650, 670);
+  bagStand.vertex(750, 670);
+  bagStand.vertex(750, 700);
+
+  // define properties
+  bagStand.setStatic(true);
+  bagStand.setFillColor(brown);
+  bagStand.setGrabbable(false);
+  bagStand.setFriction(0);
+
+  //put it in the world
+  world.add(bagStand);
 }

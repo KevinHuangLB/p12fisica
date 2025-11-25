@@ -26,6 +26,7 @@ void makeCircle(FCircle circle) {
   circle.setDensity(0.5);
   circle.setFriction(1);
   circle.setRestitution(0.3);
+  //circle.setGrabbable(false);
 
   //add to world
   world.add(circle);

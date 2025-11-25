@@ -1,7 +1,11 @@
 
-void keyPressed() {
-  if (key == ' ') spacekey = true;
-}
 void keyReleased() {
-  if (key == ' ') spacekey = false;
+  if (key == ' ') {
+    spacekey = !spacekey;
+  }
+}
+void keyPressed() {
+  if (key == ' ') {
+    spacekey = false;
+  }
 }

@@ -1,11 +1,13 @@
 
 void keyReleased() {
   if (key == ' ') {
-    spacekey = !spacekey;
+    spacekey = false;
+    spacekeyHit = true;
   }
 }
 void keyPressed() {
   if (key == ' ') {
-    spacekey = false;
+    spacekey = true;
+    spacekeyHit = false;
   }
 }

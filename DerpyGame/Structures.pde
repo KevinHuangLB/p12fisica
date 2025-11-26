@@ -26,7 +26,25 @@ void makeCircle(FCircle circle) {
   circle.setDensity(0.5);
   circle.setFriction(1);
   circle.setRestitution(0.3);
-  //circle.setGrabbable(false);
+  circle.setGrabbable(false);
+
+  //add to world
+  world.add(circle);
+}
+
+void makeCircle2(FCircle circle) {
+  circle.setPosition(785, 685);
+
+  //set visuals
+  circle.setStroke(0);
+  circle.setStrokeWeight(2);
+  circle.setFillColor(blue);
+
+  //set physical properties
+  circle.setDensity(0.5);
+  circle.setFriction(1);
+  circle.setRestitution(0.3);
+  circle.setGrabbable(false);
 
   //add to world
   world.add(circle);

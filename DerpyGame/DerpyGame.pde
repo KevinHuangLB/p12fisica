@@ -18,6 +18,11 @@ boolean spacekey;
 //slider control variables
 int sliderY;
 boolean sliderGoingDown;
+boolean spacekeyHit;
+float accuracySlider;
+
+//game variables
+boolean isPlayer1;
 
 // ball gravity variables
 int beginningFrame;
@@ -28,6 +33,7 @@ color red = #A43E3B;
 color lightBlue = #c0e6f0;
 color brown = color(166, 120, 24);
 color brightRed = #FF000D;
+color blue = #3B719F;
 
 
 void setup() {
@@ -50,10 +56,12 @@ void setup() {
 
   //ball gravity variables
 
+  //game variables
+  isPlayer1 = true;
 
   // finish setting up objects
   makeCircle(bag1);
-  //makeCircle(bag2);
+  makeCircle2(bag2);
   makeBoard(board);
   makeFloor(floor);
   makeBagStand(bagStand);
@@ -77,21 +85,32 @@ void draw() {
   stroke(brightRed);
   line(700, sliderY, 720, sliderY); //controlable
 
-  if (sliderGoingDown && !spacekey) {
+  if (sliderGoingDown && !spacekeyHit) {
     sliderY += 5;
   }
-  if (!sliderGoingDown && !spacekey) {
+  if (!sliderGoingDown && !spacekeyHit) {
     sliderY -= 5;
   }
-  if ((sliderY >= 400 || sliderY <= 100) && !spacekey) sliderGoingDown = !sliderGoingDown;
-  
-  if (spacekey) {
-    bag1.setVelocity(-10,-20);
+  if ((sliderY >= 400 || sliderY <= 100) && !spacekeyHit) sliderGoingDown = !sliderGoingDown;
+
+  float vx = map(sliderY, 100, 400, -420, -820);
+  float vy = map(sliderY, 100, 400, -440, -840);
+
+  if (spacekey && isPlayer1) {
+    bag1.setVelocity(vx, vy);
+
+    if (bag1.isTouchingBody(board)) {
+      if (bag1.getX() > 24 && bag1.getX() < 94){
+        println("YES");
+      }
+    }
+  }
+  if (spacekey && !isPlayer1) {
+    bag2.setVelocity(vx, vy);
   }
 
-  //bag1.adjustVelocity(-10,-20);
-  
-  println(bag1.getVelocityX(),bag1.getVelocityY());
+  println(mouseX, mouseY);
+
 
   world.step();
   world.draw();

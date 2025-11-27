@@ -25,7 +25,7 @@ void makeCircle(FCircle circle) {
   //set physical properties
   circle.setDensity(0.5);
   circle.setFriction(1);
-  circle.setRestitution(0.3);
+  circle.setRestitution(0.2);
   circle.setGrabbable(false);
 
   //add to world
@@ -56,6 +56,8 @@ void makeBoard(FPoly board) {
   board.vertex(0, 600);
   board.vertex(25, 600);
   board.vertex(40, 660);
+  board.vertex(40, 700);
+  board.vertex(75, 700);
   board.vertex(75, 660);
   board.vertex(100, 610);
   board.vertex(300, 670);
@@ -65,6 +67,7 @@ void makeBoard(FPoly board) {
   // define properties
   board.setStatic(true);
   board.setFillColor(brown);
+  board.setStrokeWeight(0);
   board.setGrabbable(false);
   board.setFriction(1);
   board.setRestitution(0);
@@ -84,6 +87,7 @@ void makeFloor(FPoly floor) {
   // define properties
   floor.setStatic(true);
   floor.setFillColor(brown);
+  floor.setStrokeWeight(0);
   floor.setGrabbable(false);
   floor.setFriction(0);
 
@@ -107,4 +111,59 @@ void makeBagStand(FPoly bagStand) {
 
   //put it in the world
   world.add(bagStand);
+}
+
+void makeBackboard(FPoly backboard) {
+
+  //plot the vertices of this platform
+  backboard.vertex(-100, 0);
+  backboard.vertex(0, 0);
+  backboard.vertex(0, 800);
+  backboard.vertex(-100, 800);
+
+  // define properties
+  backboard.setStatic(true);
+  backboard.setFillColor(brown);
+  backboard.setGrabbable(false);
+  backboard.setFriction(0);
+
+  //put it in the world
+  world.add(backboard);
+}
+void makeBlocker(FPoly blocker) {
+
+  //plot the vertices of this platform
+  blocker.vertex(800, 0);
+  blocker.vertex(900, 0);
+  blocker.vertex(900, 800);
+  blocker.vertex(800, 800);
+
+  // define properties
+  blocker.setStatic(true);
+  blocker.setFillColor(brown);
+  blocker.setGrabbable(false);
+  blocker.setFriction(0);
+
+  //put it in the world
+  world.add(blocker);
+}
+
+void makeGoal(FPoly goal) {
+
+  //plot the vertices of this platform
+  goal.vertex(40, 660);
+  goal.vertex(75, 660);
+  goal.vertex(75, 700);
+  goal.vertex(40, 700);
+
+  // define properties
+  goal.setStatic(true);
+  goal.setFillColor(brown);
+  goal.setStrokeWeight(0);
+  goal.setGrabbable(false);
+  goal.setFriction(1);
+  goal.setRestitution(0);
+
+  //put it in the world
+  world.add(goal);
 }

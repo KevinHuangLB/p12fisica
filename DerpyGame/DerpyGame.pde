@@ -106,10 +106,10 @@ void draw() {
   line(700, sliderY, 720, sliderY); //controlable
 
   if (sliderGoingDown && !spacekeyHit) {
-    sliderY += 3;
+    sliderY += 7;
   }
   if (!sliderGoingDown && !spacekeyHit) {
-    sliderY -= 3;
+    sliderY -= 7;
   }
   if ((sliderY > 400 || sliderY < 100) && !spacekeyHit) sliderGoingDown = !sliderGoingDown;
 

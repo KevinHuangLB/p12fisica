@@ -116,8 +116,8 @@ void makeBagStand(FPoly bagStand) {
 void makeBackboard(FPoly backboard) {
 
   //plot the vertices of this platform
-  backboard.vertex(-100, 0);
-  backboard.vertex(0, 0);
+  backboard.vertex(-100, -500);
+  backboard.vertex(0, -500);
   backboard.vertex(0, 800);
   backboard.vertex(-100, 800);
 
